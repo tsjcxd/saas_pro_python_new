@@ -22,8 +22,5 @@ def get_data(sql):
     cursor.close()
     connect.close()
 # if __name__== "__main__":
-#     result = database_operate("SELECT count(*) as total_num FROM `personal_course_template` where publish_channel=1 and is_del=0 and is_available=1 and brand_id=273567221088319;")
-#     # for item in result:
+#     result = get_data("SELECT * FROM `GetBrandShop`;")
 #     print(result)
-#     # print(type(result))
-#     # print(type(result['total_num']))

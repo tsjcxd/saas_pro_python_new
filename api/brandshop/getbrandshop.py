@@ -1,4 +1,4 @@
-from Rest_client.rest_client import RestClient
+from restclient.restclient import RestClient
 
 
 class GetBrandShop:
