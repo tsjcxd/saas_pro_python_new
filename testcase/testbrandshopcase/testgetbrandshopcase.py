@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from api.brandshop.getbrandshop import GetBrandShop
-from utils.database.jdbc_ssh_channel import get_data
+from utils.database.db import get_data
 import pytest
 
 

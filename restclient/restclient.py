@@ -2,8 +2,8 @@ import os
 import requests
 import configparser
 
-from utils.interceptor.brand_token_interceptor import get_brand_token
-from utils.interceptor.shop_token_interceptor import get_shop_token
+from public.get_token import get_shop_token
+from public.get_token import get_brand_token
 
 
 class RestClient:
@@ -24,7 +24,7 @@ class RestClient:
         print(self.base_dir)
         self.config = configparser.ConfigParser()
         self.text = os.path.join(self.base_dir, 'conf')
-        self.config.read(os.path.join(self.text, "environment.ini"))
+        self.config.read(os.path.join(self.text, "env.ini"))
         self.base_url = self.config.get(section='environment', option='test_baseurl')
         return self.base_url
 

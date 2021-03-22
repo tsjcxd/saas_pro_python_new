@@ -2,6 +2,7 @@ import pymysql.cursors
 
 
 def get_data(sql):
+
     connect = pymysql.Connect(
         host='106.15.229.10',
         port=3306,
@@ -10,7 +11,6 @@ def get_data(sql):
         db='auto_test',
         charset='utf8'
     )
-
     # 获取游标
     cursor = connect.cursor(pymysql.cursors.DictCursor)
     # print(cursor)
