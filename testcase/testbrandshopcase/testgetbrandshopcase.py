@@ -15,8 +15,7 @@ class TestGetBrandShop:
         self.get_brand_shop = GetBrandShop()
 
     def test_get_brand_shop(self):
-        result = get_data("SELECT * FROM `GetBrandShop`;")
-        params = result
+        params = get_data("SELECT * FROM `GetBrandShop`;")
         response = self.get_brand_shop.get_brand_shop(params=params)
         print(response.json())
 
