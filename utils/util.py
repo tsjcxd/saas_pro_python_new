@@ -9,7 +9,7 @@ def GBK2312():
     return st
 
 
-def first_name():  #随机取姓氏字典
+def first_name():  # 随机取姓氏字典
     first_name_list = [
         '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许',
         '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章',
@@ -29,8 +29,16 @@ def random_name():
     for i in range(n):
         s = GBK2312()
         name = name + s
-    return first_name()+name
+    return first_name() + name
 
 
-if __name__ == '__main__':
-    random_name()
+def random_phone():
+    phonelist = ["130", "131", "132", "133", "134", "135", "136", "137", "138", "139",
+                 "147", "150", "151", "152", "153", "155", "156", "157", "158", "159",
+                 "186", "187", "188", "189"]
+    return random.choice(phonelist) + "".join(random.choice("0123456789") for i in range(8))
+
+# if __name__ == '__main__':
+#     func = test_b(test_a)
+#     a = func("1")
+#     print(a)

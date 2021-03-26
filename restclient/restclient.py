@@ -17,19 +17,19 @@ class RestClient:
             "app-version": "11111",
             "token": token
         }
-        print(self.headers)
+        # print(self.headers)
 
     def post(self, api, data=None, **kwargs):
         url = base_url + api
-        response = requests.post(url, data=data, verify=False)
+        response = requests.post(url, data=data, headers=self.headers, verify=False)
         return response
 
-    def get(self, api, params, **kwargs):
+    def get(self, api, params=None, **kwargs):
         url = base_url + api
         response = requests.get(url, params=params, headers=self.headers, verify=False)
         return response
 
     def put(self, api, data=None, **kwargs):
         url = base_url + api
-        response = requests.put(url, data=data, verify=False)
+        response = requests.put(url, data=data, headers=self.headers, verify=False)
         return response
