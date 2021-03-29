@@ -28,8 +28,9 @@ def random_name():
     name = ''
     for i in range(n):
         s = GBK2312()
-        name = name + s
-    return first_name() + name
+        last_name = name + s
+        name = "员工" + first_name() + last_name
+    return name
 
 
 def random_phone():

@@ -1,51 +1,47 @@
 import pymysql.cursors
+from pymysql.cursors import DictCursor
+
+from conf import test_db_info
 
 
-def get_connect():
-    connect = pymysql.connect(host='127.0.0.1',
-                              port=3306,
-                              user='autotest',
-                              passwd='password',
-                              db='test_db',
-                              charset='utf8',
-                              autocommit=True)  # db:表示数据库名称
-    return connect
+class DB:
+    def __init__(self, db_config=None):
+        if db_config is None:
+            self.db_config = test_db_info
+        else:
+            self.db_config = db_config
+        self.conn = self.get_connect()
+        self.cursor = self.conn.cursor()
 
+    def get_connect(self):
+        connect = pymysql.connect(**self.db_config, autocommit=True, cursorclass=DictCursor)  # db:表示数据库名称
+        return connect
 
-# 查询数据
-def query(sql):
-    connect = get_connect()
-    # 获取游标
-    cursor = connect.cursor(pymysql.cursors.DictCursor)
-    cursor.execute(sql)
-    result_data = cursor.fetchone()
-    result.pop('id')
-    result.pop('expected')
-    cursor.close()
-    connect.close()
-    return result_data
+    def close(self):
+        self.cursor.close()
+        self.conn.close()
 
+    # # 查询数据
+    # def query(self, sql):
+    #     # 获取游标
+    #     self.cursor.execute(sql)
+    #     return self.cursor.fetchone()
 
-# 更新数据
-def update(sql):
-    connect = get_connect()
-    cursor = connect.cursor(pymysql.cursors.DictCursor)
-    result_new_date = cursor.execute(sql)
-    cursor.close()
-    connect.close()
-    return result_new_date
+    def execute(self, sql):
+        result = self.cursor.execute(sql)
+        return result
 
+    def get_fetchone(self, sql):
+        self.cursor.execute(sql)
+        result = self.cursor.fetchone()
+        result.pop('id')
+        result.pop('comments')
+        result.pop('expected')
+        return result
 
-# 删除数据
-def delete(sql, args):
-    connect = get_connect()
-    cur = connect.cursor()
-    result_delete = cur.execute(sql, args)
-    cur.close()
-    connect.close()
-    return result_delete
 
 
 if __name__ == "__main__":
-    result = update("UPDATE `create_shop_staff` set department_id=43534 where id=1;")
+    db = DB()
+    result = db.get_fetchone(sql="SELECT * FROM create_shop_staff WHERE id=1;")
     print(result)

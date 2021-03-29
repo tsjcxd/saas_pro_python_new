@@ -1,17 +1,40 @@
+import pytest
+import datetime
+
 from api.shopstaff.create_salesperson import CreateSalesperson
 from utils.util import random_name, random_phone
-from utils.database.db import query, update
+from utils.database.db import DB
 
 
+@pytest.fixture(scope='class')
+def create_db():
+    db = DB()
+    yield db
+    db.close()
+
+
+@pytest.mark.usefixtures('create_db')
 class TestCreateShopSalesperson:
 
-    def setup(self):
+    @pytest.fixture(autouse=True)
+    def setup(self, create_db):
+        self.db = create_db
         self.salesperson = CreateSalesperson()
 
     def test01_create_shop_salesperson_success(self):
-        update("UPDATE `create_shop_staff` set staff_name={} where id=1".format(str(random_name())))
-        update("UPDATE `create_shop_staff` set mobile={} where id=1".format(str(random_phone())))
-        update("UPDATE `create_shop_staff` set nickname={} where id=1".format(str(random_name())))
+        payload = self.db.get_fetchone('''SELECT * FROM create_shop_staff WHERE id=1;''')
+        name = random_name()
+        # print(payload)
+        payload.update({
+            'staff_name': name,
+            'mobile': random_phone(),
+            'nickname': name,
+            'entry_date': datetime.datetime.now()
+        })
+        print(payload)
+        data = self.db.get_fetchone('SELECT * FROM `create_shop_staff` where id = 1;')
+        response = self.salesperson.create_salesperson(data=data)
+        print(response.text)
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from api.shopstaff.get_department import GetDepartment
-from utils.database.db import query, update, delete
+from utils.database.db import DB
 
 
 class TestGetDepartment:
@@ -20,8 +20,8 @@ class TestGetDepartment:
         for j in list1:
             if j["name"] == "销售部":
                 department_id = j["id"]
-                # return department_id
-        update("UPDATE `create_shop_staff` set department_id={} where id=1;".format(department_id))
+        db = DB()
+        db.execute("UPDATE `create_shop_staff` set department_id={} where id=1;".format(department_id))
 
 
 if __name__ == '__main__':
