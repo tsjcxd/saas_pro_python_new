@@ -1,8 +1,8 @@
 
 import requests
 
-from public.get_token import get_shop_token
-from public.get_token import get_brand_token
+from operation.public.get_token import get_shop_token
+from operation.public.get_token import get_brand_token
 from conf import base_url
 
 
@@ -21,12 +21,12 @@ class RestClient:
 
     def post(self, api, data=None, **kwargs):
         url = base_url + api
-        response = requests.post(url, data=data, headers=self.headers, verify=False)
+        response = requests.post(url, data=data, headers=self.headers, verify=False, **kwargs)
         return response
 
     def get(self, api, params=None, **kwargs):
         url = base_url + api
-        response = requests.get(url, params=params, headers=self.headers, verify=False)
+        response = requests.get(url, params=params, headers=self.headers, verify=False, **kwargs)
         return response
 
     def put(self, api, data=None, **kwargs):
