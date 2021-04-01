@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from api.shopstaff.get_shop_list import GetShop
+from api.staff.shopstaff import GetShop
 from utils.database.db import DB
 
 

@@ -3,7 +3,7 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from utils.util import random_name, random_phone
-from api.shopmember.createshopmember import CreateShopMember
+from api.member.shopmember import CreateShopMember
 import pytest
 
 

@@ -3,8 +3,8 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from api.shopstaff.get_department import GetDepartment
-from utils.database.db import DB
+from api.staff.shopstaff.get_department import GetDepartment
+
 
 @pytest.fixture(scope='module')
 def create_department():

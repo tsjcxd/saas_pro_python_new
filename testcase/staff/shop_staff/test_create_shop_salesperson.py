@@ -1,8 +1,7 @@
 import pytest
-import datetime
 import json
 
-from api.shopstaff.create_salesperson import CreateSalesperson
+from api.staff.shopstaff import CreateSalesperson
 from utils.util import random_name, random_phone
 from utils.database.db import DB
 

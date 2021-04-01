@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from api.brandshop.getbrandshop import GetBrandShop
+from api.systerm_interface.getbrandshop import GetBrandShop
 from utils.database.db import DB
 import pytest
 
