@@ -23,6 +23,7 @@ class DB:
 
     # # 查询数据
     # def query(self, sql):
+    # def query(self, sql):
     #     # 获取游标
     #     self.cursor.execute(sql)
     #     return self.cursor.fetchone()

@@ -1,4 +1,5 @@
 import random
+import datetime
 
 
 def GBK2312():
@@ -9,27 +10,13 @@ def GBK2312():
     return st
 
 
-def first_name():  # 随机取姓氏字典
-    first_name_list = [
-        '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许',
-        '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章',
-        '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳',
-        '酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常',
-        '乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹',
-        '姚', '邵', '堪', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞',
-        '熊', '纪', '舒', '屈', '项', '祝', '董', '梁']
-    n = random.randint(0, len(first_name_list) - 1)
-    f_name = first_name_list[n]
-    return f_name
-
-
-def random_name():
-    n = random.randint(1, 2)
-    name = ''
-    for i in range(n):
-        s = GBK2312()
-        last_name = name + s
-        name = "员工" + first_name() + last_name
+def random_name(prefix='', num=8):
+    h = '赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵堪汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁'
+    if len(prefix) > num:
+        digt = 0
+    else:
+        digt = num - len(prefix)
+    name = prefix + ''.join(random.sample(h, digt))
     return name
 
 
@@ -39,7 +26,11 @@ def random_phone():
                  "186", "187", "188", "189"]
     return random.choice(phonelist) + "".join(random.choice("0123456789") for i in range(8))
 
-# if __name__ == '__main__':
-#     func = test_b(test_a)
-#     a = func("1")
-#     print(a)
+
+def get_date(day):
+    today = (datetime.datetime.now()+datetime.timedelta(days=day)).strftime('%Y-%m-%d')
+    return today
+
+
+if __name__ == '__main__':
+    print(random_name('ss'))

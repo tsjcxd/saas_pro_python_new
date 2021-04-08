@@ -1,15 +1,9 @@
 SET NAMES utf8mb4;
+DROP DATABASE IF EXISTS `test_db`;
 CREATE DATABASE IF NOT EXISTS `test_db` DEFAULT CHARACTER SET utf8mb4;
 USE `test_db`;
 
---CREATE TABLE `hotdb_datanode` (
---  `datanode_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
---  `datanode_name` varchar(50) NOT NULL DEFAULT '',
---  `datanode_type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '0:M-S; 1:MGR',
---  PRIMARY KEY (`datanode_id`),
---  UNIQUE KEY `unique_idx_datanodename` (`datanode_name`)
---) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='HOTDB的数据节点信息(Data node information of HotDB)';
-
+DROP TABLE IF EXISTS `create_brand_member_card`;
 CREATE TABLE `create_brand_member_card` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `card_type` int(10) NOT NULL,
@@ -32,9 +26,14 @@ CREATE TABLE `create_brand_member_card` (
   `publish_channel` int(10) NOT NULL,
   `admission_shop_list` JSON DEFAULT NULL,
   `sell_shop_list`JSON DEFAULT NULL,
+  `comments` varchar(255),
+  `expected` varchar(255),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='创建品牌下的会员卡';
 
+INSERT INTO `create_brand_member_card` VALUES(0,2,'品牌期限卡333',1,3,1,1,'2021-04-07',"2021-04-30",FALSE,2,null,'[{"id": 0, "unit": 2, "num": 100, "rally_price": 0.1, "frozen_day": 100, "gift_unit": 10}]','[2,1]','','在可用期限内不限次数','','{}',1,'[]','[]','','');
+
+DROP TABLE IF EXISTS `create_shop_staff`;
 CREATE TABLE `create_shop_staff` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mobile` varchar(250) NOT NULL,
