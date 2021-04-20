@@ -36,6 +36,7 @@ INSERT INTO `create_brand_member_card` VALUES(0,2,'品牌期限卡333',1,3,1,1,'
 DROP TABLE IF EXISTS `create_shop_staff`;
 CREATE TABLE `create_shop_staff` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `staff_name` varchar(250) NOT NULL,
   `mobile` varchar(250) NOT NULL,
   `sex` int(250) NOT NULL,
   `nickname` varchar(250) NOT NULL,
@@ -54,6 +55,7 @@ CREATE TABLE `create_shop_staff` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='创建门店员工';
 
+INSERT INTO `create_shop_staff` VALUES(0,2,'品牌期限卡333',1,3,1,1,'2021-04-07',"2021-04-30",FALSE,2,null,'[{"id": 0, "unit": 2, "num": 100, "rally_price": 0.1, "frozen_day": 100, "gift_unit": 10}]','[2,1]','','在可用期限内不限次数','','{}',1,'[]','[]','','');
 
 
 commit;

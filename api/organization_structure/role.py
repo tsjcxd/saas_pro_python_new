@@ -1,10 +1,10 @@
 from restclient.restclient import RestClient
 
 
-class CreateShopMember:
+class Role:
     def __init__(self):
         self.rest_client = RestClient(is_shop=True)
 
-    def create_shop_member(self, data, **karges):
-        response = self.rest_client.post("/_api/v1/member", data=data)
+    def get_role(self):
+        response = self.rest_client.get("/_api/v1/common/role/normal")
         return response

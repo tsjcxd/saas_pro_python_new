@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from api.systerm_interface.getbrandshop import GetBrandShop
+from api.systerm_setting.shop_list.brand_shop import BrandShop
 from utils.database.db import DB
 import pytest
 
@@ -12,7 +12,7 @@ class TestGetBrandShop:
 
     @pytest.fixture(autouse=True)
     def setup(self):
-        self.get_brand_shop = GetBrandShop()
+        self.get_brand_shop = BrandShop()
 
     def test_get_brand_shop(self):
         db = DB()

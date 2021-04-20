@@ -3,14 +3,14 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from api.staff.shopstaff import GetRole
+from api.organization_structure.role import Role
 from utils.database.db import DB
 
 
-class TestGetRole:
-
+class TestRole:
+    """获取角色"""
     def setup(self):
-        self.get_role = GetRole()
+        self.get_role = Role()
 
     def test01_get_role_success(self):
         response = self.get_role.get_role()
@@ -25,4 +25,4 @@ class TestGetRole:
 
 
 if __name__ == '__main__':
-    TestGetRole()
+    TestRole()

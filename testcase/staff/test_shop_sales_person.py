@@ -1,14 +1,15 @@
 import pytest
 import json
 
-from api.staff.shopstaff.create_salesperson import CreateSalesperson
+from api.staff.shop_sales_person import Salesperson
 from utils.util import random_name, random_phone
 from utils.database.db import DB
+from conf import auto_db_info
 
 
 @pytest.fixture(scope='class')
 def create_db():
-    db = DB()
+    db = DB(auto_db_info, False)
     yield db
     db.close()
 
@@ -19,7 +20,7 @@ class TestCreateShopSalesperson:
     @pytest.fixture(autouse=True)
     def setup(self, create_db):
         self.db = create_db
-        self.salesperson = CreateSalesperson()
+        self.salesperson = Salesperson()
 
     def test01_create_shop_salesperson_success(self):
         payload = self.db.get_fetchone('''SELECT * FROM create_shop_staff WHERE id=1;''')
@@ -42,7 +43,7 @@ class TestCreateShopSalesperson:
         print(json.dumps(payload, ensure_ascii=False))
         #
         # data = self.db.get_fetchone('SELECT * FROM `create_shop_staff` where id = 1;')
-        response = self.salesperson.create_salesperson(json=payload)
+        response = self.salesperson.create_sales_person(json=payload)
         print(response.text)
 
 

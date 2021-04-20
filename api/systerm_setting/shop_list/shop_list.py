@@ -1,7 +1,7 @@
 from restclient.restclient import RestClient
 
 
-class GetShop:
+class Shop:
     def __init__(self):
         self.rest_client = RestClient(is_shop=True)
 

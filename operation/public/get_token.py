@@ -1,11 +1,10 @@
 import urllib3
-
 import requests
-
 from conf import base_url, app_id, app_version, name, password, nvc_val
 
 
 def get_brand_token():
+    """获取品牌维度的token"""
     url = base_url + "/_api/login/account"
     header = {
         "app-id": app_id,
@@ -23,6 +22,7 @@ def get_brand_token():
 
 
 def get_shop_token():
+    """获取门店维度的token"""
     url = base_url + "/_api/v1/account/switch/shop"
 
     header = {
